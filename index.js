@@ -33,16 +33,19 @@ const Module = class {
     // You are allowed to add extra methods and properties to this class
     let submit = document.querySelector('button')
     let success = document.getElementsByTagName('success')
+    let div = document.createElement("div");	
+    let select = document.createElement("select")
     submit.addEventListener("click",function(e){
-        for(let i = 0; i <= oppoStatus.length; i++) {
-            e.preventDefault()
-            success = oppoStatus.K_OPPO_STATUS;
-            if(success === oppoStatus.K_OPPO_STATUS) {
-                console.log(JSON.stringify(oppoStatus[i]));  
-            }else{
-                console.log("Don't work")
-            }
-        }
+        oppoStatus.forEach(function(oppostatus){
+          e.preventDefault()
+          select.insertAdjacentHTML("afterbegin", `<option>${oppostatus.K_OPPO_STATUS} ${oppostatus.STATUS}</option>`)
+          success = oppostatus.K_OPPO_STATUS;
+          success === oppostatus.K_OPPO_STATUS ? console.log(JSON.stringify(oppostatus.STATUS)) 
+          : console.log("Don't work")
+          div.innerHTML = JSON.stringify(oppostatus.K_OPPO_STATUS+ " "+ oppostatus.STATUS)
+          document.body.appendChild(select)
+          document.body.appendChild(div);	
+        })
     })
   }
 };
